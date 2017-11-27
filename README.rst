@@ -17,12 +17,21 @@ https://wiki.conreality.org/HAL
 Installation
 ============
 
+Installation from Source Code
+-----------------------------
+
 ::
 
-   $ ./autogen.sh   # only for Git checkouts
+   $ ./autogen.sh   # only needed for the development version from Git
 
    $ ./configure
 
    $ make
 
    $ sudo make install
+
+See Also
+========
+
+* `Conreality Driver Development Kit (DDK) for C++
+  <https://github.com/conreality/conreality-ddk>`__
