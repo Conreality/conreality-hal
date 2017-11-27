@@ -83,6 +83,8 @@ AS_CASE([$host_os],
   [netbsd*],  [host_type="posix" host_os="bsd"],
   [openbsd*], [host_type="posix" host_os="bsd"],
   [AC_MSG_ERROR([unsupported OS platform: $host_os])])
+AM_CPPFLAGS="$AM_CPPFLAGS -I\$(top_srcdir)"
+AC_SUBST([AM_CPPFLAGS])
 
 dnl Check for library functions:
 AC_CHECK_FUNCS_ONCE([ioctl])
@@ -90,7 +92,14 @@ AC_CHECK_FUNCS_ONCE([ioctl])
 dnl Check for system services:
 
 dnl Generate output:
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([
+  Makefile
+  dummy-camera/Makefile
+  dummy-control/Makefile
+  dummy-gps/Makefile
+  dummy-mic/Makefile
+  dummy-tag/Makefile
+])
 AC_SUBST([PACKAGE_VERSION_MAJOR], ["VERSION_MAJOR"])
 AC_SUBST([PACKAGE_VERSION_MINOR], ["VERSION_MINOR"])
 AC_SUBST([PACKAGE_VERSION_PATCH], ["VERSION_PATCH"])

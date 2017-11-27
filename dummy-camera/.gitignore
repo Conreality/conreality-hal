@@ -1,0 +1,8 @@
+# Program binary
+dummy-camera
+
+# Object files
+*.o
+
+# GNU Autotools
+.deps/

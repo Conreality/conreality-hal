@@ -1,0 +1,8 @@
+# Program binary
+dummy-control
+
+# Object files
+*.o
+
+# GNU Autotools
+.deps/
