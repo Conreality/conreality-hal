@@ -1,1 +1,13 @@
-{}
+{
+  "id": "dummy-gps",
+  "class": "gps",
+  "platforms": ["any"],
+  "vendor": "Conreality",
+  "label": {
+    "en": "Dummy GPS"
+  },
+  "summary": {
+    "en": "A dummy GPS receiver driver."
+  },
+  "seeAlso": []
+}

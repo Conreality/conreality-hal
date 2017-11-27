@@ -1,1 +1,13 @@
-{}
+{
+  "id": "dummy-control",
+  "class": "control",
+  "platforms": ["any"],
+  "vendor": "Conreality",
+  "label": {
+    "en": "Dummy Gamepad/Joystick"
+  },
+  "summary": {
+    "en": "A dummy gamepad/joystick controller driver."
+  },
+  "seeAlso": []
+}

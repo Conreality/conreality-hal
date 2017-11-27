@@ -1,1 +1,13 @@
-{}
+{
+  "id": "dummy-tag",
+  "class": "tag",
+  "platforms": ["any"],
+  "vendor": "Conreality",
+  "label": {
+    "en": "Dummy IPS Tag"
+  },
+  "summary": {
+    "en": "A dummy IPS tag driver."
+  },
+  "seeAlso": []
+}

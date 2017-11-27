@@ -1,1 +1,13 @@
-{}
+{
+  "id": "dummy-camera",
+  "class": "camera",
+  "platforms": ["any"],
+  "vendor": "Conreality",
+  "label": {
+    "en": "Dummy Camera"
+  },
+  "summary": {
+    "en": "A dummy camera driver."
+  },
+  "seeAlso": []
+}

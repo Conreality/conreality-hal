@@ -1,1 +1,13 @@
-{}
+{
+  "id": "dummy-mic",
+  "class": "mic",
+  "platforms": ["any"],
+  "vendor": "Conreality",
+  "label": {
+    "en": "Dummy Microphone"
+  },
+  "summary": {
+    "en": "A dummy microphone driver."
+  },
+  "seeAlso": []
+}
