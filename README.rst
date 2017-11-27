@@ -12,4 +12,17 @@ Conreality Hardware Abstraction Layer (HAL)
 
 |
 
-https://wiki.conreality.org/
+https://wiki.conreality.org/HAL
+
+Installation
+============
+
+::
+
+   $ ./autogen.sh   # only for Git checkouts
+
+   $ ./configure
+
+   $ make
+
+   $ sudo make install
