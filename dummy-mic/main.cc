@@ -5,12 +5,19 @@
 #endif
 
 #include <assert.h> /* for assert() */
-#include <cstdio>   /* for std::printf() */
 #include <cstdlib>  /* for EXIT_SUCCESS */
+#include <unistd.h> /* for usleep() */
 
 #include <conreality/ddk.h>
 
 int
 main(void) {
-  return EXIT_SUCCESS; // TODO
+  conreality::ddk::input in;
+  conreality::ddk::output out;
+
+  while (in.is_open()) {
+    usleep(1'000'000); // TODO
+  }
+
+  return EXIT_SUCCESS;
 }
