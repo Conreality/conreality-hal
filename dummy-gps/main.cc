@@ -59,7 +59,7 @@ main(int argc, char* const argv[]) {
     std::default_random_engine rand;
     std::uniform_real_distribution<double> noise_dist{-1.0, 1.0};
 
-    /* Open input/output streams: */
+    /* Open the input & output streams: */
     conreality::ddk::input in;
     conreality::ddk::output out;
 
