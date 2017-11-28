@@ -4,11 +4,12 @@
 #include "config.h"
 #endif
 
-#include <assert.h> /* for assert() */
-#include <cstdlib>  /* for EXIT_SUCCESS */
-#include <unistd.h> /* for usleep() */
-
 #include <conreality/ddk.h>
+
+#include <assert.h> /* for assert() */
+#include <chrono>   /* for std::chrono */
+#include <cstdlib>  /* for EXIT_SUCCESS */
+#include <thread>   /* for std::this_thread */
 
 int
 main(void) {
@@ -16,7 +17,7 @@ main(void) {
   conreality::ddk::output out;
 
   while (in.is_open()) {
-    usleep(1'000'000); // TODO
+    std::this_thread::sleep_for(std::chrono::seconds{1}); // TODO
   }
 
   return EXIT_SUCCESS;
