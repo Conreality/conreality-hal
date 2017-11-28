@@ -19,7 +19,7 @@ Usage Example
 -------------
 
 Output GPS coordinates at 1.5-second intervals, with 1% noise, centered
-around 60°08'43.4"N 24°59'17.3"E:
+around the location 60°08'43.4"N 24°59'17.3"E:
 
 ::
 

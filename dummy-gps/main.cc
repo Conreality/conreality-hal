@@ -35,15 +35,10 @@ main(int argc, char* const argv[]) {
     int c;
     while ((c = getopt(argc, argv, "i:n:?h")) != -1) {
       switch (c) {
-        case 'i':
-          interval = milliseconds{static_cast<long>(std::atof(optarg) * 1000.0)};
-          break;
-        case 'n':
-          noise = std::atof(optarg);
-          break;
+        case 'i': interval = milliseconds{static_cast<long>(std::atof(optarg) * 1000.0)}; break;
+        case 'n': noise = std::atof(optarg); break;
         case '?': case 'h': // fall through
-        default:
-          return usage(program), EXIT_SUCCESS;
+        default: return usage(program), EXIT_SUCCESS;
       }
     }
     argc -= optind, argv += optind;
