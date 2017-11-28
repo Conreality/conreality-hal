@@ -59,6 +59,7 @@ AC_CHECK_PROGS([PANDOC], [pandoc])
 dnl Check for libraries:
 
 dnl Check for header files:
+AC_CHECK_HEADERS_ONCE([conreality/ddk.h])
 AC_CHECK_HEADERS_ONCE([sys/ioctl.h])
 AC_CHECK_HEADERS_ONCE([sys/mman.h])
 

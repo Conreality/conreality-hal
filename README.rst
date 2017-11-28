@@ -14,6 +14,24 @@ Conreality Hardware Abstraction Layer (HAL)
 
 https://wiki.conreality.org/HAL
 
+Prerequisites
+=============
+
+Dependencies
+============
+
+1. `Conreality Driver Development Kit (DDK) for C++
+   <https://github.com/conreality/conreality-ddk>`__
+
+   The ``./configure`` step must be able to find the ``conreality/ddk.h``
+   header file. In case your DDK installation *isn't* in a standard system
+   header inclusion path such as ``/usr/include`` or ``/usr/local/include``,
+   you will need to set the ``CPPFLAGS`` environment variable such that the
+   C++ preprocessor can find the DDK header files; for example, to directly
+   refer to a local Git clone of the DDK source code repository::
+
+      $ export CPPFLAGS="-I/path/to/conreality-ddk/src $CPPFLAGS"
+
 Installation
 ============
 

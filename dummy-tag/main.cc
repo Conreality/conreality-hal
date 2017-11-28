@@ -8,6 +8,8 @@
 #include <cstdio>   /* for std::printf() */
 #include <cstdlib>  /* for EXIT_SUCCESS */
 
+#include <conreality/ddk.h>
+
 int
 main(void) {
   return EXIT_SUCCESS; // TODO
