@@ -13,7 +13,7 @@ Usage Reference
 
 ::
 
-   usage: dummy-tag [-i INTERVAL] [-n NOISE] [X] [Y] [Z]
+   usage: dummy-tag [-i PERIOD] [-n NOISE] [X] [Y] [Z]
 
 Usage Example
 -------------

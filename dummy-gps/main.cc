@@ -16,7 +16,7 @@
 
 static void
 usage(const char* const program) {
-  std::fprintf(stderr, "usage: %s [-i INTERVAL] [-n NOISE] [LAT] [LON]\n", program);
+  std::fprintf(stderr, "usage: %s [-i PERIOD] [-n NOISE] [LAT] [LON]\n", program);
 }
 
 int
@@ -24,8 +24,8 @@ main(int argc, char* const argv[]) {
   using std::chrono::milliseconds;
 
   /* Define default parameters: */
-  milliseconds interval{1000}; // -i %f
-  double noise{0.0};           // -n %f
+  milliseconds period{1000}; // -i %f
+  double noise{0.0};         // -n %f
   double latitude{0.0};
   double longitude{0.0};
 
@@ -35,7 +35,7 @@ main(int argc, char* const argv[]) {
     int c;
     while ((c = getopt(argc, argv, "i:n:?h")) != -1) {
       switch (c) {
-        case 'i': interval = milliseconds{static_cast<long>(std::atof(optarg) * 1000.0)}; break;
+        case 'i': period = milliseconds{static_cast<long>(std::atof(optarg) * 1000.0)}; break;
         case 'n': noise = std::atof(optarg); break;
         case '?': case 'h': // fall through
         default: return usage(program), EXIT_SUCCESS;
@@ -67,7 +67,7 @@ main(int argc, char* const argv[]) {
       }
       out.write_tuple(lon, lat);
 
-      std::this_thread::sleep_for(interval);
+      std::this_thread::sleep_for(period);
     }
 
     return EXIT_SUCCESS;

@@ -13,7 +13,7 @@ Usage Reference
 
 ::
 
-   usage: dummy-gps [-i INTERVAL] [-n NOISE] [LAT] [LON]
+   usage: dummy-gps [-i PERIOD] [-n NOISE] [LAT] [LON]
 
 Usage Example
 -------------
