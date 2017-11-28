@@ -2,7 +2,7 @@
 Dummy GPS Receiver
 ******************
 
-This is a simple dummy driver for simulating a `GPS receiver
+This is a simple dummy driver for simulating a stationary `GPS receiver
 <https://en.wikipedia.org/wiki/GPS_navigation_device>`__.
 
 Usage
