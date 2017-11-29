@@ -4,9 +4,9 @@ dnl Process this file with `autoconf` to produce a configure script.
 dnl
 dnl This is free and unencumbered software released into the public domain.
 
-dnl The build system requires M4, Autoconf, Automake, and GNU Make.
-dnl It does _not_ and _should_ not require GNU Libtool nor pkg-config.
-AC_PREREQ([2.68])
+dnl The build system requires Autoconf, Automake, GNU Make, and pkg-config.
+dnl It does _not_ and _should_ not require GNU Libtool.
+AC_PREREQ([2.69])
 
 dnl Define version information:
 m4_define([VERSION_MAJOR],
