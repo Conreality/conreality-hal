@@ -84,8 +84,6 @@ Configuring, building, and installing the driver binaries (by default, into
 ``/usr/local/libexec/conreality``) are all performed with the standard
 incantations::
 
-::
-
    $ ./autogen.sh   # only needed for the development version from Git
 
    $ ./configure
