@@ -8,7 +8,13 @@ README.html: README.rst
 CLEANFILES = README.html
 
 SUBDIRS += dummy-camera
+
 SUBDIRS += dummy-control
+
 SUBDIRS += dummy-gps
-SUBDIRS += dummy-mic
+
+if HAVE_OPUS
+  SUBDIRS += dummy-mic
+endif
+
 SUBDIRS += dummy-tag
