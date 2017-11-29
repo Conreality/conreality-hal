@@ -14,6 +14,25 @@ Conreality Hardware Abstraction Layer (HAL)
 
 https://wiki.conreality.org/HAL
 
+Drivers
+=======
+
+=============== ================================================================
+Driver          Summary
+=============== ================================================================
+dummy-camera_   A dummy camera driver.
+dummy-control_  A dummy gamepad/joystick controller driver.
+dummy-gps_      A dummy GPS receiver driver.
+dummy-mic_      A dummy microphone driver.
+dummy-tag_      A dummy indoor positioning system (IPS) tag driver.
+=============== ================================================================
+
+.. _dummy-camera:  https://github.com/conreality/conreality-hal/tree/master/dummy-camera
+.. _dummy-control: https://github.com/conreality/conreality-hal/tree/master/dummy-control
+.. _dummy-gps:     https://github.com/conreality/conreality-hal/tree/master/dummy-gps
+.. _dummy-mic:     https://github.com/conreality/conreality-hal/tree/master/dummy-mic
+.. _dummy-tag:     https://github.com/conreality/conreality-hal/tree/master/dummy-tag
+
 Prerequisites
 =============
 
@@ -51,11 +70,19 @@ Build Dependencies
 
       $ export CPPFLAGS="-I/path/to/conreality-ddk/src $CPPFLAGS"
 
+2. `Opus audio codec (libopus) <https://github.com/xiph/opus>`__ (>= 1.2)
+
+   Required by the dummy mic driver. (To omit, say ``--disable-audio``.)
+
 Installation
 ============
 
 Installation from Source Code
 -----------------------------
+
+Configuring, building, and installing the driver binaries (by default, into
+``/usr/local/libexec/conreality``) are all performed with the standard
+incantations::
 
 ::
 
