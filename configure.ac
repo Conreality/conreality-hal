@@ -49,15 +49,30 @@ AS_IF([test "x$enable_debug" != "xno"],
   [AC_DEFINE([DEBUG], [1], [Enable debugging support.])],
   [AC_DEFINE([NDEBUG], [1], [Disable assertions.])])
 AM_CONDITIONAL([ENABLE_DEBUG], [test "x$enable_debug" != "xno"])
+# --enable-*/--disable-*
+AC_DEFUN([AX_ARG_ENABLE_FEATURE], [dnl
+  m4_define([FEATURE_ID], m4_translit([$1], [-a-z], [_A-Z]))
+  AC_ARG_ENABLE([$1], [AS_HELP_STRING([--disable-$1], [disable $2])])
+  AS_IF([test "x$enable_$1" == "xno"], [
+    AC_DEFINE([DISABLE_]FEATURE_ID, 1, [Define to disable $2.])])
+  AM_CONDITIONAL([DISABLE_]FEATURE_ID, [test "x$enable_$1" == "xno"])
+])
+AX_ARG_ENABLE_FEATURE([audio], [audio support]) # --enable-audio/--disable-audio
 
 dnl Check for programs:
 AC_PROG_CXX(clang++ g++ c++)
 AC_PROG_CXXCPP
 AX_CXX_COMPILE_STDCXX([14], [noext])
-AC_LANG([C++])
+PKG_PROG_PKG_CONFIG([0.29])
 AC_CHECK_PROGS([PANDOC], [pandoc])
+AC_LANG([C++])
 
 dnl Check for libraries:
+AS_IF([test "x$enable_audio" != "xno"], [
+  PKG_CHECK_MODULES([OPUS], [opus >= 1.2],
+    [AC_DEFINE([HAVE_OPUS], [1], [Define to 1 if you have libopus.])])
+])
+AM_CONDITIONAL([HAVE_OPUS], [test "x$OPUS_LIBS" != "x"])
 
 dnl Check for header files:
 AC_CHECK_HEADERS_ONCE([getopt.h])
