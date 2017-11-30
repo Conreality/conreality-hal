@@ -6,36 +6,52 @@
 
 #include <conreality/ddk.h>
 
+#include <opus.h>   /* for libopus */
+
 #include <assert.h> /* for assert() */
 #include <chrono>   /* for std::chrono */
 #include <cstdio>   /* for stderr, std::fprintf() */
-#include <cstdlib>  /* for EXIT_* */
+#include <cstdlib>  /* for EXIT_*, std::atoi() */
 #include <thread>   /* for std::this_thread */
 #include <unistd.h> /* for getopt() */
 
 static void
 usage(const char* const program) {
-  std::fprintf(stderr, "usage: %s\n", program);
+  std::fprintf(stderr, "usage: %s [-c CHANNELS] [-s KHZ] [-b KBITS]\n", program);
 }
 
 int
 main(int argc, char* const argv[]) {
+  /* Define default parameters: */
+  int channels{2};     // -c %d
+  int sample_rate{48}; // -s %d
+  int bit_rate{64};    // -b %d
+
   /* Parse command-line options: */
   const char* program = argv[0];
   {
     int c;
-    while ((c = getopt(argc, argv, "?h")) != -1) {
+    while ((c = getopt(argc, argv, "c:b:s:?h")) != -1) {
       switch (c) {
+        case 'c': channels = std::atoi(optarg); break;
+        case 'b': bit_rate = std::atoi(optarg); break;
+        case 's': sample_rate = std::atoi(optarg); break;
         case '?': case 'h': // fall through
-        default:
-          return usage(program), EXIT_SUCCESS;
+        default: return usage(program), EXIT_SUCCESS;
       }
     }
     argc -= optind, argv += optind;
   }
 
+  /* Validate command-line options: */
+  if (sample_rate != 8 && sample_rate != 12 && sample_rate != 16 &&
+      sample_rate != 24 && sample_rate != 48) {
+    std::fprintf(stderr, "%s: %s\n", program, "invalid sample rate");
+    return EXIT_FAILURE;
+  }
+
   /* Parse command-line arguments: */
-  if (argc >= 0) return usage(program), EXIT_FAILURE;
+  if (argc != 1) return usage(program), EXIT_FAILURE;
 
   try {
     /* Open the input & output streams: */
