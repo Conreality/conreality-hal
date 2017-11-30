@@ -38,7 +38,7 @@ main(int argc, char* const argv[]) {
   if (argc >= 0) return usage(program), EXIT_FAILURE;
 
   try {
-    /* Open the input & output streams: */
+    /* Open the driver input & output streams: */
     conreality::ddk::input in;
     conreality::ddk::output out;
 
