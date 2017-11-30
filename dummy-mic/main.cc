@@ -10,10 +10,11 @@
 
 #include <assert.h>  /* for assert() */
 #include <chrono>    /* for std::chrono */
-#include <cstdio>    /* for stderr, std::fprintf() */
+#include <cstdio>    /* for stderr, std::f*() */
 #include <cstdlib>   /* for EXIT_*, std::atoi() */
 #include <memory>    /* for std::unique_ptr */
 #include <stdexcept> /* for std::runtime_error */
+#include <system_error>
 #include <thread>    /* for std::this_thread */
 #include <unistd.h>  /* for getopt() */
 
@@ -60,18 +61,26 @@ main(int argc, char* const argv[]) {
     conreality::ddk::input in;
     conreality::ddk::output out;
 
+    /* Open the specified input audio file: */
+    std::unique_ptr<FILE, int(*)(FILE*)> input{fopen(argv[0], "re"), std::fclose};
+    if (!input) {
+      throw std::system_error{errno, std::system_category()};
+    }
+
     std::unique_ptr<OpusEncoder, void(*)(OpusEncoder*)> encoder{nullptr, opus_encoder_destroy};
 
     int error;
-    encoder.reset(opus_encoder_create(sample_rate * 1000, channels, OPUS_APPLICATION_VOIP, &error));
+    encoder.reset(opus_encoder_create(sample_rate * 1'000, channels, OPUS_APPLICATION_VOIP, &error));
     if (error < 0) {
       throw std::runtime_error{"opus_encoder_create failed"};
     }
     assert(encoder);
 
-    if ((error = opus_encoder_ctl(encoder.get(), OPUS_SET_BITRATE(bit_rate * 1000))) < 0) {
+    if ((error = opus_encoder_ctl(encoder.get(), OPUS_SET_BITRATE(bit_rate * 1'000))) < 0) {
       throw std::runtime_error{"opus_encoder_ctl failed"};
     }
+
+    // TODO
 
 #if 0
     /* Generate sensor readings to the output stream: */
