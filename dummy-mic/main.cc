@@ -6,14 +6,16 @@
 
 #include <conreality/ddk.h>
 
-#include <opus.h>   /* for libopus */
+#include <opus.h>    /* for libopus */
 
-#include <assert.h> /* for assert() */
-#include <chrono>   /* for std::chrono */
-#include <cstdio>   /* for stderr, std::fprintf() */
-#include <cstdlib>  /* for EXIT_*, std::atoi() */
-#include <thread>   /* for std::this_thread */
-#include <unistd.h> /* for getopt() */
+#include <assert.h>  /* for assert() */
+#include <chrono>    /* for std::chrono */
+#include <cstdio>    /* for stderr, std::fprintf() */
+#include <cstdlib>   /* for EXIT_*, std::atoi() */
+#include <memory>    /* for std::unique_ptr */
+#include <stdexcept> /* for std::runtime_error */
+#include <thread>    /* for std::this_thread */
+#include <unistd.h>  /* for getopt() */
 
 static void
 usage(const char* const program) {
@@ -58,10 +60,25 @@ main(int argc, char* const argv[]) {
     conreality::ddk::input in;
     conreality::ddk::output out;
 
+    std::unique_ptr<OpusEncoder, void(*)(OpusEncoder*)> encoder{nullptr, opus_encoder_destroy};
+
+    int error;
+    encoder.reset(opus_encoder_create(sample_rate * 1000, channels, OPUS_APPLICATION_VOIP, &error));
+    if (error < 0) {
+      throw std::runtime_error{"opus_encoder_create failed"};
+    }
+    assert(encoder);
+
+    if ((error = opus_encoder_ctl(encoder.get(), OPUS_SET_BITRATE(bit_rate * 1000))) < 0) {
+      throw std::runtime_error{"opus_encoder_ctl failed"};
+    }
+
+#if 0
     /* Generate sensor readings to the output stream: */
     while (in.is_open()) {
       std::this_thread::sleep_for(std::chrono::seconds{1}); // TODO
     }
+#endif
 
     return EXIT_SUCCESS;
   }
