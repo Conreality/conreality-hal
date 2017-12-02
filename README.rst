@@ -70,7 +70,19 @@ Build Dependencies
 
       $ export CPPFLAGS="-I/path/to/conreality-ddk/src $CPPFLAGS"
 
-2. `Opus audio codec (libopus) <https://github.com/xiph/opus>`__ (>= 1.2)
+2. `Conreality Software Development Kit (SDK) for C++
+   <https://github.com/conreality/conreality-sdk>`__
+
+   The ``./configure`` step must be able to find the ``conreality/sdk.h``
+   header file. In case your SDK installation *isn't* in a standard system
+   header inclusion path such as ``/usr/include`` or ``/usr/local/include``,
+   you will need to set the ``CPPFLAGS`` environment variable such that the
+   C++ preprocessor can find the SDK header files; for example, to directly
+   refer to a local Git clone of the SDK source code repository::
+
+      $ export CPPFLAGS="-I/path/to/conreality-sdk/src $CPPFLAGS"
+
+3. `Opus audio codec (libopus) <https://github.com/xiph/opus>`__ (>= 1.2)
 
    Required by the dummy mic driver. (To omit, say ``--disable-audio``.)
 
@@ -97,3 +109,6 @@ See Also
 
 * `Conreality Driver Development Kit (DDK) for C++
   <https://github.com/conreality/conreality-ddk>`__
+
+* `Conreality Software Development Kit (SDK) for C++
+  <https://github.com/conreality/conreality-sdk>`__
